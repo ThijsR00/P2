@@ -1,6 +1,7 @@
 package P2;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Reiziger {
 	ReizigerOracleDaoImpl a = new ReizigerOracleDaoImpl();
@@ -9,6 +10,7 @@ public class Reiziger {
 	private String tussenvoegsel;
 	private String achternaam;
 	private String gbdatum;
+	private ArrayList<OV_Chipkaart> kaarten = new ArrayList<OV_Chipkaart>();
 
 	
 	public Reiziger(String voorletters, String tussenvoegsel, String achternaam, String gbdatum) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
@@ -62,10 +64,39 @@ public class Reiziger {
 		this.gbdatum = gbdatum;
 		a.update(this);
 	}
+	
+	public ArrayList<OV_Chipkaart> getKaarten() {
+		return kaarten;
+	}
+
+	public void setKaarten(ArrayList<OV_Chipkaart> kaarten) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		this.kaarten = kaarten;
+	}
+	
+	public void addKaart(OV_Chipkaart ov) {
+		System.out.println(ov);
+		
+		OV_Chipkaart ovc = new OV_Chipkaart(ov.getKaartNummer(), ov.getGeldigTot(), ov.getKlasse(), ov.getSaldo(), ov.getReiziger());
+		kaarten.add(ovc);
+	}
+	
+	public void deleteKaart(OV_Chipkaart ov) {
+		System.out.println("joe");
+		System.out.println(ov);
+		for (int i = 0; i<kaarten.size(); i++) {
+			if(kaarten.get(i).getKaartNummer() == ov.getKaartNummer()) {
+				this.kaarten.remove(i);
+				System.out.println(this.getKaarten());
+			}
+		}
+		
+		
+	}
+
 	@Override
 	public String toString() {
 		return "GEBRUIKER: " + reizigerID + ", " + voorletters + ", "
-				+ tussenvoegsel + ", " + achternaam + ", " + gbdatum;
+				+ tussenvoegsel + ", " + achternaam + ", " + gbdatum + ", " + kaarten;
 	}
 
 

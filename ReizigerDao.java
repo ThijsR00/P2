@@ -10,6 +10,8 @@ public interface ReizigerDao {
 	public Reiziger save(Reiziger reiziger) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException;
 	public Reiziger update(Reiziger reiziger) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException;
 	public boolean delete(Reiziger reiziger) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException;
+	
+	public Reiziger reizigerById(int id) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException;
 	/*
 	 * public void closeConnection();
 	 */}

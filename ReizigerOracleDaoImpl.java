@@ -75,5 +75,18 @@ public class ReizigerOracleDaoImpl extends OracleBaseDao implements ReizigerDao{
 		conn.close();
 		return true;
 	}
-	
+	public Reiziger reizigerById(int id) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+		OracleBaseDao.getConnection();
+		Statement stmt = conn.createStatement();
+		String queryText = "SELECT * FROM REIZIGER WHERE reizigerID = " + id;
+		ResultSet rs = stmt.executeQuery(queryText);
+		Reiziger reiziger = null;
+		while (rs.next()) {
+			reiziger = new Reiziger(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+		}
+		rs.close();
+		stmt.close();
+		conn.close();
+		return reiziger;
+	}
 }

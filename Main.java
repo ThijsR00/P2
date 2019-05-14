@@ -8,7 +8,7 @@ public class Main {
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		
 		ReizigerOracleDaoImpl a = new ReizigerOracleDaoImpl();
-		AdresOracleDaoImpl b = new AdresOracleDaoImpl();
+//		AdresOracleDaoImpl b = new AdresOracleDaoImpl();
 		OV_ChipkaartOracleDaoImpl c = new OV_ChipkaartOracleDaoImpl();		
 		
 		Reiziger r1 = new Reiziger("J", "van", "Vermeer", "1999-2-12");
@@ -27,7 +27,8 @@ public class Main {
 		
 		System.out.println(a.findAll());
 
-		OV_Chipkaart k1 = new OV_Chipkaart("2021-4-14", 2, 30.00, 5);
+		OV_Chipkaart k1 = new OV_Chipkaart("2021-4-14", 2, 30.00, r2);
+		OV_Chipkaart k2 = new OV_Chipkaart("2021-4-15", 1, 100.00, r1);
 		System.out.println(k1);
 		
 		k1.setKlasse(1);
@@ -35,6 +36,8 @@ public class Main {
 		
 		c.delete(k1);
 		
+		System.out.println("Joe");
+		System.out.println(r2);
 		System.out.println(c.findAll());
 		
 		System.out.println(c.findByReiziger(r1));
